@@ -1,53 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, {Component} from 'react';
+    import {
+        AppRegistry,
+        StyleSheet,
+        Text,
+        View,
+        TouchableHighlight
+    } from 'react-native';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+    let randomColor = () => {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 3; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
-export default class AwesomeProject extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+    export default class AwesomeProject extends Component {
+        constructor(props) {
+            super(props)
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+             this.onClick = this.onClick.bind(this);
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+            this.state = {
+                backgroundColor: randomColor()
+            };
+
+        }
+        onClick() {
+            console.log('clicked ');
+            this.setState({backgroundColor: randomColor()});
+        }
+        render() {
+            return (
+                <TouchableHighlight onPress={ this.onClick } style={[styles.container, {backgroundColor: this.state.backgroundColor}]}>
+                    <View>
+                        <Text style={styles.instructions}>
+                            <Text style={styles.Tap}> Tap </Text>to Change the Background Color
+                        </Text>
+                    </View>
+                </TouchableHighlight>
+            );
+        }
+    }
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: randomColor()
+        },
+        instructions: {
+            color: "white",
+            fontSize:15
+
+        },
+        Tap: {
+           fontWeight: 'bold',
+        }
+    });
+    AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
