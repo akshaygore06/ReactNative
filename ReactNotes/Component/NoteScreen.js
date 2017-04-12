@@ -23,8 +23,8 @@ var styles = StyleSheet.create({
       // flex:2,
       justifyContent:'center',
       alignItems:'center',
-      // flex: 1
-      backgroundColor: 'orange'
+       flex: 1,
+      // backgroundColor: 'orange'
    },
    note: {
       fontWeight:'bold',

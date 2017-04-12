@@ -25,7 +25,7 @@ export default class SimpleButton extends Component {
 }
 
 SimpleButton.protoTypes = {
-   pnPress: React.PropTypes.func.isRequired,
+   onPress: React.PropTypes.func.isRequired,
    customText: React.PropTypes.string
 };
 

@@ -9,26 +9,57 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Button,
+  Alert,
+  Navigator,
   View
 } from 'react-native';
+
+import SimpleButton from './Component/SimpleButton.js';
+import NoteScreen from './Component/NoteScreen.js';
 
 export default class ReactNotes extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+      <Navigator
+         initialRoute={{name: 'home'}}
+         renderScene={this.renderScene}
+
+      />
+
+);
+
+}
+
+renderScene(route , navigator) {
+   switch (route.name){
+      case 'home':
+          return (
+             <View style={styles.container}>
+                <SimpleButton
+                   onPress={()=> {navigator.push({
+                      name:'createNote'
+                   });
+                }}
+                   customText ={'Create Note'}
+                />
+             </View>
+          );
+       case 'createNote':
+          return(
+             <View style={styles.container}>
+                < NoteScreen  />
+             </View>
+
+          );
+   }
+
+ // Alert.alert(router.name);
+}
+
+
+
+
 }
 
 const styles = StyleSheet.create({
